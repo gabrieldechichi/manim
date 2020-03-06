@@ -141,7 +141,7 @@ class TexMobject(SingleStringTexMobject):
         tex_strings = self.break_up_tex_strings(tex_strings)
         self.tex_strings = tex_strings
         SingleStringTexMobject.__init__(
-            self, self.arg_separator.join(tex_strings), **kwargs
+            self, self.generate_single_string_mobject(tex_strings), **kwargs
         )
         self.break_up_by_substrings()
         self.set_color_by_tex_to_color_map(self.tex_to_color_map)
@@ -161,6 +161,9 @@ class TexMobject(SingleStringTexMobject):
         #split_list = list(map(str.strip, split_list))
         split_list = [s for s in split_list if s != '']
         return split_list
+
+    def generate_single_string_mobject(self, tex_strings):
+        return self.arg_separator.join(tex_strings)
 
     def break_up_by_substrings(self):
         """
